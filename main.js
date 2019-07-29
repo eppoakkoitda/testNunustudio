@@ -10,7 +10,7 @@ buildQuiz(0);
 
 previousButton.addEventListener("click", showPreviousQuestion);
 nextButton.addEventListener("click", showNextQuestion);
-submitButton.addEventListener('click', showResults);
+submitButton.addEventListener('click', showResult);
 
 // 問題HTMLの生成
 function buildQuiz(n){
@@ -24,15 +24,17 @@ function buildQuiz(n){
     for(letter in myQuestions[n].answers){
         answers.push(
             `<label>
-                <input type="radio" name="question${n}" value="${letter}">
+                <input type="radio" name="questions" value="${letter}">
                 ${letter} : ${myQuestions[n].answers[letter]} <br>
             </label>`
         );
     }
 
+    let saveData = getSaveData(n);
     // outputに質問文と選択肢のHTMLを格納
     output.push(
-        `<div class="question"> ${myQuestions[n].question} </div>
+        `${JSON.stringify(saveData)}
+        <div class="question"> ${myQuestions[n].question} </div>
         <div class="answers"> ${answers.join('')} </div>`
     );
 
@@ -42,39 +44,53 @@ function buildQuiz(n){
     currentQuestion = n;
 }
 
-function showResults(){
-    // outputの中のHTMLのクラスがanswersのDOMを選択
-    const answerContainers = quizContainer.querySelectorAll('.answers');
-    // ユーザーが選択した回答を格納する変数
-    let numCorrect = 0;
-
-    // 質問の解答をループを使って順番にチェック
-    // 1.ユーザーが選択した解答をHTMLから取得
-    // 2.正答の場合の処理
-    // 3.誤答の場合の処理
-    myQuestions.forEach(
-        (currentQuestion, questionNumber) => {
-            const answerContainer = answerContainers[questionNumber];
-            const selector = `input[name=question${questionNumber}]:checked`;
-            const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-            if(userAnswer === currentQuestion.correctAnswer){
-                numCorrect++;
-                answerContainers[questionNumber].style.color = 'lightgreen';
-            }else{
-                answerContainers[questionNumber].style.color = 'red';
-            }
+function showResult(){
+    let buttons = document.getElementsByName( "questions" );
+    for ( var userAnswer="", i=buttons.length; i--; ) {
+        if ( buttons[i].checked ) {
+            var userAnswer = buttons[i].value ;
+            break ;
         }
-    );
+    }
 
-    resultsContainer.innerHTML = `${numCorrect}out of${myQuestions.length}`;
+    let saveData = getSaveData(currentQuestion);
+    let sd_length = Object.keys(saveData).length;
+    
+    if ( userAnswer === "" ) {
+        
+    } else {
+        if(userAnswer === myQuestions[currentQuestion].correctAnswer){
+            quizContainer.style.color = 'lightgreen';
+            saveData[sd_length + 1] = "〇";
+        }else{
+            quizContainer.style.color = 'red';
+            saveData[sd_length + 1] = "×";
+        }
+    }
+
+    let setJSON = JSON.stringify(saveData);
+    localStorage.setItem(currentQuestion, setJSON);
+    resultsContainer.innerHTML = userAnswer;
 }
 
 function showNextQuestion() {
+    quizContainer.style.color = 'black';
     buildQuiz(currentQuestion + 1);
 }
   
 function showPreviousQuestion() {
+    quizContainer.style.color = 'black';
     buildQuiz(currentQuestion - 1);
+}
+
+function getSaveData(key){
+    let getJSON = localStorage.getItem(key);
+    if(getJSON == null){
+        var saveData = {};
+    }else{
+        var saveData = JSON.parse(getJSON);
+    }
+    return saveData;
 }
 
 }

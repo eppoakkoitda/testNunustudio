@@ -13,33 +13,25 @@ body{
     width: 100%;
     display: grid;
     grid-template:
-        "question" 75%
-        "buttons" 15%
-        "ad" 10%
-        /100%;
+        "question question" 70%
+        "l_button r_button" 10%
+        "a_button a_button" 10%
+        "ad ad" 10%
+        /50% 50%;
 }
-.quiz-container{
+#quiz{
     grid-area: question;
     overflow:auto;
 }
-.button-container{
-    grid-area: buttons;
-    display: grid;
-    /* grid-template:
-        100%/
-        "previous" 33%
-        "next" 33%
-        "submit" 34%; */
-}
-/* #previous{
-    grid-area: previous;
+#previous{
+    grid-area: l_button;
 }
 #next{
-    grid-area: next;
+    grid-area: r_button;
 }
 #submit{
-    grid-area: submit;
-} */
+    grid-area: a_button;
+}
 #results{
     grid-area: ad;
 }
