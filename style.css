@@ -1,0 +1,45 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+body{
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.all-container{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template:
+        "question" 75%
+        "buttons" 15%
+        "ad" 10%
+        /100%;
+}
+.quiz-container{
+    grid-area: question;
+    overflow:auto;
+}
+.button-container{
+    grid-area: buttons;
+    display: grid;
+    /* grid-template:
+        100%/
+        "previous" 33%
+        "next" 33%
+        "submit" 34%; */
+}
+/* #previous{
+    grid-area: previous;
+}
+#next{
+    grid-area: next;
+}
+#submit{
+    grid-area: submit;
+} */
+#results{
+    grid-area: ad;
+}
