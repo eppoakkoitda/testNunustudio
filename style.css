@@ -9,7 +9,7 @@ body{
   margin: 0;
 }
 .all-container{
-    font-size: 24px;
+    font-size: 3vh;
     height: 100%;
     width: 100%;
     display: grid;
