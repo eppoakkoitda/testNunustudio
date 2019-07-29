@@ -70,7 +70,7 @@ function showResult(){
 
     let setJSON = JSON.stringify(saveData);
     localStorage.setItem(currentQuestion, setJSON);
-    resultsContainer.innerHTML = userAnswer;
+    resultsContainer.innerHTML = userAnswer ;
 }
 
 function showNextQuestion() {

@@ -9,6 +9,7 @@ body{
   margin: 0;
 }
 .all-container{
+    font-size: 120%;
     height: 100%;
     width: 100%;
     display: grid;
@@ -16,8 +17,8 @@ body{
         "question question" 70%
         "l_button r_button" 10%
         "a_button a_button" 10%
-        "ad ad" 10%
-        /50% 50%;
+        "ad ad"             10%
+        /50%         50%;
 }
 #quiz{
     grid-area: question;
@@ -34,4 +35,25 @@ body{
 }
 #results{
     grid-area: ad;
+}
+
+.btn-square-soft {
+    grid-area: l_button;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    overflow: hidden;
+    font-weight: bold;
+    background: linear-gradient(#dbdbdb 0%, #9c9c9c 100%);
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+    outline: none
+}
+  
+.btn-square-soft:active {
+    /*押したとき*/
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);/*沈むように*/
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+    background-image: linear-gradient(#dddddd 0%, #aaaaaa 100%);/*グラデーションを明るく*/
 }
