@@ -9,7 +9,7 @@ body{
   margin: 0;
 }
 .all-container{
-    font-size: 120%;
+    font-size: 24px;
     height: 100%;
     width: 100%;
     display: grid;
@@ -45,8 +45,8 @@ body{
     overflow: hidden;
     font-weight: bold;
     background: linear-gradient(#dbdbdb 0%, #9c9c9c 100%);
-    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+    text-shadow: 1px 1px 1px rgba(224, 224, 224, 0.66);
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.28);
     outline: none
 }
   
